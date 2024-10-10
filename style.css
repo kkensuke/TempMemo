@@ -1,0 +1,131 @@
+/* General styles */
+* {
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+header {
+  background-color: #4a4a4a;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+main {
+  padding: 1rem;
+}
+
+/* Memo styles */
+.memo {
+  position: relative;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+.memo-buttons {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.memo-buttons button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background-color 0s;
+}
+
+.memo-buttons button:hover {
+  background-color: #e0e0e0;
+}
+
+.copy-btn {
+  background-color: #4CAF50 !important;
+  color: white;
+  border: none !important;
+}
+
+.copy-btn:hover {
+  background-color: #45a049 !important;
+}
+
+.delete-btn {
+  background-color: #f44336 !important;
+  color: white;
+  border: none !important;
+}
+
+.delete-btn:hover {
+  background-color: #d32f2f !important;
+}
+
+.toggle-btn {
+  background-color: #2196F3 !important;
+  color: white;
+  border: none !important;
+}
+
+.toggle-btn:hover {
+  background-color: #1976D2 !important;
+}
+
+.memo-text {
+  margin-top: 1.5rem;
+  max-height: 5.8em; /* Approximately 4 lines of text */
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.memo-text.expanded {
+  max-height: none;
+}
+
+.memo a {
+  display: block;
+  padding-top: 0.35rem;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.memo a:hover {
+  text-decoration: underline;
+}
+
+.memo small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #666;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .container {
+    padding: 0rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+}
