@@ -1,3 +1,7 @@
+browser.browserAction.onClicked.addListener(() => {
+  browser.sidebarAction.toggle();
+});
+
 browser.contextMenus.create({
   id: 'save-selection',
   title: 'Save selection as memo',
@@ -32,6 +36,6 @@ browser.contextMenus.onClicked.addListener((info, tab) => {
 
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'saveSelection') {
-    saveMemo(message); // The message will now include scrollPosition, startY, and endY
+    saveMemo(message);
   }
 });

@@ -94,11 +94,10 @@ function displayMemos() {
           if (tabs.length > 0) {
             browser.tabs.update(tabs[0].id, { active: true });
             browser.tabs.sendMessage(tabs[0].id, {
-              action: 'scrollAndHighlight',
+              action: 'highlightAfterLoad',
               scrollPosition: memo.scrollPosition,
               startY: memo.startY,
-              endY: memo.endY,
-              text: memo.text
+              endY: memo.endY
             });
           } else {
             browser.tabs.create({ url: url }, (tab) => {
@@ -109,11 +108,10 @@ function displayMemos() {
                 if (tabId === tab.id && info.status === 'complete') {
                   browser.tabs.onUpdated.removeListener(listener);
                   browser.tabs.sendMessage(tab.id, {
-                    action: 'scrollAndHighlight',
+                    action: 'highlightAfterLoad',
                     scrollPosition: memo.scrollPosition,
                     startY: memo.startY,
-                    endY: memo.endY,
-                    text: memo.text
+                    endY: memo.endY
                   });
                 }
               });

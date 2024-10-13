@@ -55,7 +55,7 @@ document.addEventListener('selectionchange', showAddLink);
 
 // Listen for scroll requests and use the saved scroll position
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === 'scrollAndHighlight') {
+  if (message.action === 'scrollToText') {
     scrollToPosition(message.scrollPosition);
     highlightText(message.startY, message.endY);
   }
@@ -84,5 +84,26 @@ function highlightText(startY, endY) {
   // Remove the highlight after 3 seconds
   setTimeout(() => {
     document.body.removeChild(highlightElement);
-  }, 3000);
+  }, 10000);
 }
+
+// Function to handle highlighting after page load
+function handleHighlightAfterLoad(scrollPosition, startY, endY) {
+  // Wait for the page to finish loading
+  if (document.readyState === 'complete') {
+    scrollToPosition(scrollPosition);
+    highlightText(startY, endY);
+  } else {
+    window.addEventListener('load', () => {
+      scrollToPosition(scrollPosition);
+      highlightText(startY, endY);
+    });
+  }
+}
+
+// Listen for messages from the background script
+browser.runtime.onMessage.addListener((message) => {
+  if (message.action === 'highlightAfterLoad') {
+    handleHighlightAfterLoad(message.scrollPosition, message.startY, message.endY);
+  }
+});
