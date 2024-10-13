@@ -14,7 +14,18 @@
 }
 
 .my-addon-add-link:hover {
-  background-color: #3A7BC8;
+  background-color: #3a7bc8;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   text-decoration: none;
+}
+
+.my-addon-highlight {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background-color: yellow;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 9998;
+  transition: opacity 0.3s ease;
 }

@@ -30,12 +30,18 @@ function showAddLink(e) {
       // Get the current scroll position
       const scrollPosition = window.scrollY;
 
+      // Get the start and end positions of the selection
+      const startY = window.scrollY + range.getBoundingClientRect().top;
+      const endY = window.scrollY + range.getBoundingClientRect().bottom;
+
       browser.runtime.sendMessage({
         action: 'saveSelection',
         text: selection.toString(),
         url: window.location.href,
         title: document.title,
-        scrollPosition: scrollPosition // Store the scroll position
+        scrollPosition: scrollPosition,
+        startY: startY,
+        endY: endY
       });
       addLink.style.display = 'none';
     };
@@ -49,44 +55,34 @@ document.addEventListener('selectionchange', showAddLink);
 
 // Listen for scroll requests and use the saved scroll position
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === 'scrollToText') {
-    scrollToPosition(message.scrollPosition); // Scroll to the stored scroll position
+  if (message.action === 'scrollAndHighlight') {
+    scrollToPosition(message.scrollPosition);
+    highlightText(message.startY, message.endY);
   }
 });
 
 function scrollToPosition(scrollPosition) {
   // Scroll to the stored scroll position
   window.scrollTo(0, scrollPosition);
-
-  // Optionally, you can highlight the selected text
-  setTimeout(() => {
-    highlightCurrentSelection();
-  }, 500); // Wait for the scroll to complete
 }
 
-function highlightCurrentSelection() {
-  const selection = window.getSelection();
-  const range = selection.getRangeAt(0);
-  const highlight = document.createElement('span');
-  highlight.style.backgroundColor = 'yellow';
-  highlight.style.color = 'black';
+function highlightText(startY, endY) {
+  const highlightElement = document.createElement('div');
+  highlightElement.className = 'my-addon-highlight';
+  highlightElement.style.position = 'absolute';
+  highlightElement.style.left = '0';
+  highlightElement.style.width = '100%';
+  highlightElement.style.top = `${startY}px`;
+  highlightElement.style.height = `${endY - startY}px`;
+  highlightElement.style.backgroundColor = 'yellow';
+  highlightElement.style.opacity = '0.5';
+  highlightElement.style.pointerEvents = 'none';
+  highlightElement.style.zIndex = '9998';
 
-  try {
-    range.surroundContents(highlight);
-  } catch (e) {
-    console.error('Failed to highlight selection:', e);
-  }
+  document.body.appendChild(highlightElement);
 
+  // Remove the highlight after 3 seconds
   setTimeout(() => {
-    try {
-      const parent = highlight.parentNode;
-      while (highlight.firstChild) {
-        parent.insertBefore(highlight.firstChild, highlight);
-      }
-      parent.removeChild(highlight);
-      parent.normalize();
-    } catch (e) {
-      console.error('Failed to remove highlight:', e);
-    }
-  }, 2000);
+    document.body.removeChild(highlightElement);
+  }, 3000);
 }

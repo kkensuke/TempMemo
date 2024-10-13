@@ -29,7 +29,9 @@ function displayMemos() {
         <div class="memo-text ${isLong ? '' : 'expanded'}">
           <p>${displayText}</p>
         </div>
-        <a href="#" class="memo-link" data-url="${memo.url}" data-index="${index}">${titleText}</a>
+        <a href="#" class="memo-link" data-url="${
+          memo.url
+        }" data-index="${index}">${titleText}</a>
         <small>${new Date(memo.date).toLocaleString()}</small>
       `;
       memoList.appendChild(memoElement);
@@ -87,22 +89,31 @@ function displayMemos() {
         const index = parseInt(e.target.getAttribute('data-index'));
         const url = e.target.getAttribute('data-url');
         const memo = memos[index];
-        
-        browser.tabs.query({url: url}, (tabs) => {
+
+        browser.tabs.query({ url: url }, (tabs) => {
           if (tabs.length > 0) {
-            browser.tabs.update(tabs[0].id, {active: true});
+            browser.tabs.update(tabs[0].id, { active: true });
             browser.tabs.sendMessage(tabs[0].id, {
-              action: 'scrollToText',  // You can rename this to 'scrollToPosition' if needed
-              scrollPosition: memo.scrollPosition  // Send the stored scroll position
+              action: 'scrollAndHighlight',
+              scrollPosition: memo.scrollPosition,
+              startY: memo.startY,
+              endY: memo.endY,
+              text: memo.text
             });
           } else {
-            browser.tabs.create({url: url}, (tab) => {
-              browser.tabs.onUpdated.addListener(function listener(tabId, info) {
+            browser.tabs.create({ url: url }, (tab) => {
+              browser.tabs.onUpdated.addListener(function listener(
+                tabId,
+                info
+              ) {
                 if (tabId === tab.id && info.status === 'complete') {
                   browser.tabs.onUpdated.removeListener(listener);
                   browser.tabs.sendMessage(tab.id, {
-                    action: 'scrollToText',  // You can rename this to 'scrollToPosition' if needed
-                    scrollPosition: memo.scrollPosition  // Send the stored scroll position
+                    action: 'scrollAndHighlight',
+                    scrollPosition: memo.scrollPosition,
+                    startY: memo.startY,
+                    endY: memo.endY,
+                    text: memo.text
                   });
                 }
               });
