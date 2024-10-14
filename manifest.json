@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Temp memo",
-  "version": "0.1",
-  "description": "Temporary memo in the sidebar",
+  "name": "Temp notes",
+  "version": "0.2",
+  "description": "Temporary notes in the sidebar",
   "icons": {
     "48": "icon.png",
     "96": "icon.png"
@@ -14,10 +14,10 @@
   ],
   "browser_action": {
     "default_icon": "icon.png",
-    "default_title": "Open Temp memo"
+    "default_title": "Open Temp notes"
   },
   "sidebar_action": {
-    "default_title": "Temp memo",
+    "default_title": "Temp notes",
     "default_panel": "sidebar.html",
     "default_icon": "icon.png"
   },

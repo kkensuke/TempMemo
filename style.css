@@ -32,7 +32,7 @@ main {
 
 /* Search styles */
 .search-container {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 #searchInput {
