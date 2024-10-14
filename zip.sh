@@ -1,0 +1,1 @@
+zip TempMemo content.js content.css icon.png popup.js background.js manifest.json sidebar.html sidebar.js style.css 

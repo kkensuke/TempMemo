@@ -30,6 +30,19 @@ main {
   padding: 1rem;
 }
 
+/* Search styles */
+.search-container {
+  margin-bottom: 1rem;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 /* Memo styles */
 .memo {
   position: relative;
@@ -62,7 +75,7 @@ main {
 }
 
 .copy-btn {
-  background-color: #4CAF50 !important;
+  background-color: #4caf50 !important;
   color: white;
   border: none !important;
 }
@@ -82,13 +95,13 @@ main {
 }
 
 .toggle-btn {
-  background-color: #2196F3 !important;
+  background-color: #2196f3 !important;
   color: white;
   border: none !important;
 }
 
 .toggle-btn:hover {
-  background-color: #1976D2 !important;
+  background-color: #1976d2 !important;
 }
 
 .memo-text {
