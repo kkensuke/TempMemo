@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Temp notes",
-  "version": "0.2",
+  "version": "0.4",
   "description": "Temporary notes in the sidebar",
   "icons": {
     "48": "icon.png",
@@ -10,7 +10,8 @@
   "permissions": [
     "activeTab",
     "storage",
-    "contextMenus"
+    "contextMenus",
+    "downloads"  // Add this for export functionality
   ],
   "browser_action": {
     "default_icon": "icon.png",

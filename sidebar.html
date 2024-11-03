@@ -1,20 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Temp notes Sidebar</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temp Notes Sidebar</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
     <div class="container">
-      <main>
-        <div class="search-container">
-          <input type="text" id="searchInput" placeholder="Search notes...">
-        </div>
-        <div id="memoList"></div>
-      </main>
+        <header>
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search notes..."
+                    aria-label="Search notes">
+            </div>
+        </header>
+        
+        <main>
+            <!-- Toolbar will be inserted here by JavaScript -->
+            <div id="memoList"></div>
+        </main>
+
+        <!-- Templates for dynamic content -->
+        <template id="memo-template">
+            <div class="memo">
+                <div class="memo-header">
+                    <div class="memo-buttons">
+                        <button class="copy-btn" title="Copy to clipboard">Copy</button>
+                        <button class="delete-btn" title="Delete note">Delete</button>
+                        <button class="toggle-btn" title="Show more">Show More</button>
+                    </div>
+                    <span class="category-tag"></span>
+                </div>
+                <div class="memo-text">
+                    <p></p>
+                </div>
+                <div class="memo-footer">
+                    <a href="#" class="memo-link"></a>
+                    <small></small>
+                </div>
+            </div>
+        </template>
     </div>
+
     <script src="sidebar.js"></script>
-  </body>
+</body>
 </html>
