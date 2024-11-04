@@ -82,7 +82,7 @@
   opacity: 0;
 }
 
-.hidden {
+.myhidden {
   display: none !important;
 }
 

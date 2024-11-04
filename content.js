@@ -9,7 +9,7 @@ function createAddLink() {
   link.className = 'my-addon-add-link';
   link.textContent = '+ Save';
   link.href = '#';
-  link.classList.add('hidden');
+  link.classList.add('myhidden');
   link.title = 'Save selection to Temp Notes (Ctrl+Shift+S)';
   document.body.appendChild(link);
   return link;
@@ -17,7 +17,7 @@ function createAddLink() {
 
 function createPreviewBox() {
   const box = document.createElement('div');
-  box.className = 'my-addon-preview hidden';
+  box.className = 'my-addon-preview myhidden';
   document.body.appendChild(box);
   return box;
 }
@@ -77,8 +77,8 @@ function showAddLink() {
     if (!previewBox) previewBox = createPreviewBox();
 
     // Show elements
-    addLink.classList.remove('hidden');
-    previewBox.classList.remove('hidden');
+    addLink.classList.remove('myhidden');
+    previewBox.classList.remove('myhidden');
 
     // Update positions
     updateUIPosition(addLink, previewBox, rect);
@@ -95,8 +95,8 @@ function showAddLink() {
 }
 
 function hideUI() {
-  addLink?.classList.add('hidden');
-  previewBox?.classList.add('hidden');
+  addLink?.classList.add('myhidden');
+  previewBox?.classList.add('myhidden');
 }
 
 async function saveSelection(selectionInfo) {
