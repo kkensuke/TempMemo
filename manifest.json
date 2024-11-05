@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Temp notes",
-  "version": "0.4",
+  "version": "0.5",
   "description": "Temporary notes in the sidebar",
   "icons": {
     "48": "icon.png",
